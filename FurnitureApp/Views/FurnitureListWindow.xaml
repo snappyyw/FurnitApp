@@ -1,0 +1,16 @@
+﻿<Window x:Class="FurnitureApp.Views.FurnitureListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FurnitureApp.Views"
+        mc:Ignorable="d"
+        Title="Список фурнитуры" Height="450" Width="800">
+    <Grid>
+        <DataGrid Name="FurnitureDataGrid" HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="615"/>
+        <Button Name="AddButton" Content="Добавить" HorizontalAlignment="Left" Margin="639,10,0,0" VerticalAlignment="Top" Width="131" Height="50" FontSize="20" FontFamily="Arial" Click="Button_Add_Click"/>
+        <Button Name="EditButton" Content="Изменить" HorizontalAlignment="Left" Margin="639,65,0,0" VerticalAlignment="Top" Width="131" Height="50" FontSize="20" FontFamily="Arial" Click="Button_Edit_Click"/>
+        <Button Name="DeleteButton" Content="Удалить" HorizontalAlignment="Left" Margin="639,120,0,0" VerticalAlignment="Top" Width="131" Height="50" FontSize="20" FontFamily="Arial" Click="Button_Delete_Click"/>
+
+    </Grid>
+</Window>
