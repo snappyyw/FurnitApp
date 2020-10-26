@@ -22,53 +22,30 @@ namespace FurnitureApp.Views
     {
         Equipment _equipment = new Equipment();
 
-        FornitureContext fornitureContext = new FornitureContext();
+        private static FornitureContext fornitureContext = new FornitureContext();
+
+        List<string> types = fornitureContext.Equipment_types.Select(et => et.type_of_equipment).ToList();
 
         public EquipmentWindow()
         {
             InitializeComponent();
-            TypeComboBox.ItemsSource = fornitureContext.Equipment_types.Select(et => et.type_of_equipment).ToList();
+            TypeComboBox.ItemsSource = types;
             TypeComboBox.SelectedIndex = 0;
+            DatePurchDataPicker.SelectedDate = DateTime.Today;
         }
 
         public EquipmentWindow(Equipment equipment)
         {
             InitializeComponent();
-            TypeComboBox.ItemsSource = fornitureContext.Equipment_types.Select(et => et.type_of_equipment).ToList();
+            TypeComboBox.ItemsSource = types;
             TypeComboBox.SelectedIndex = 0;
 
             NameTextBox.Text = equipment.Name;
             TypeComboBox.SelectedItem = equipment.Type;
             DatePurchDataPicker.SelectedDate = equipment.PurchaseDate;
-            SpecificationsDataGrid.ItemsSource = getSpecList(equipment);
+            SpecTextBox.Text = equipment.Specifications;
 
             _equipment = equipment;
-        }
-
-        private List<Specification> getSpecList(Equipment equipment)
-        {
-            List<Specification> specifications = new List<Specification>();
-            string[] parts = equipment.Specifications.Split('\n');
-            string[] parts2;
-            for (int i = 0; i < parts.Length; i++)
-            {
-                parts2 = parts[i].Split(':');
-                if (parts2.Length > 1)
-                {
-                    specifications.Add(new Specification { Name = parts2[0], value = parts2[1] });
-                }
-            }
-            return specifications;
-        }
-
-        private string getSpecString()
-        {
-            string res = "";
-            foreach (Specification specification in SpecificationsDataGrid.Items)
-            {
-                res += $"{specification.Name}:{specification.value}\n";
-            }
-            return res;
         }
 
         private void Button_Save_Click(object sender, RoutedEventArgs e)
@@ -77,8 +54,8 @@ namespace FurnitureApp.Views
             {
                 _equipment.Name = NameTextBox.Text;
                 _equipment.Type = TypeComboBox.SelectedItem.ToString();
-                _equipment.PurchaseDate = DatePurchDataPicker.DisplayDate;
-                _equipment.Specifications = getSpecString();
+                _equipment.PurchaseDate = DatePurchDataPicker.SelectedDate.Value.Date;
+                _equipment.Specifications = SpecTextBox.Text;
 
                 try
                 {

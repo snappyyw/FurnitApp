@@ -18,6 +18,7 @@ namespace FurnitureApp.Model
         public DbSet<EquipmentType> Equipment_types { get; set; }
         public DbSet<Material> Materials { get; set; }
         public DbSet<Furniture> Furniture { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
 
         public FornitureContext()
         {

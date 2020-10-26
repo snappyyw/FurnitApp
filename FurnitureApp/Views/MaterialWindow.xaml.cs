@@ -22,15 +22,21 @@ namespace FurnitureApp.Views
     {
         Material _material = new Material();
 
-        FornitureContext fornitureContext = new FornitureContext();
+        private static FornitureContext fornitureContext = new FornitureContext();
 
-        List<string> qualities = new List<string> { "Качественный", "С незначительными дефектами", "Бракованный" };
+        List<string> qualities = new List<string> {"Качественный", "С незначительными дефектами", "Бракованный"};
+        List<string> types = new List<string> {"Металлы", "Керамика", "Композиты", "Биоматериаллы"};
+        List<string> suppliers = fornitureContext.Suppliers.Select(s => s.Name).ToList();
 
         public MaterialWindow()
         {
             InitializeComponent();
             QualityComboBox.ItemsSource = qualities;
             QualityComboBox.SelectedIndex = 0;
+            SuppComboBox.ItemsSource = suppliers;
+            SuppComboBox.SelectedIndex = 0;
+            TypeComboBox.ItemsSource = types;
+            TypeComboBox.SelectedIndex = 0;
         }
 
         public MaterialWindow(Material material)
@@ -38,17 +44,22 @@ namespace FurnitureApp.Views
             InitializeComponent();
             QualityComboBox.ItemsSource = qualities;
             QualityComboBox.SelectedIndex = 0;
+            SuppComboBox.ItemsSource = suppliers;
+            SuppComboBox.SelectedIndex = 0;
+            TypeComboBox.ItemsSource = types;
+            TypeComboBox.SelectedIndex = 0;
 
             QualityComboBox.SelectedItem = material.Quality;
-            ArticulTextBox.Text = material.Article;
+            ArticleTextBox.Text = material.Article;
+            ArticleTextBox.IsEnabled = false;
             NameTextBox.Text = material.Name;
             UnitTextBox.Text = material.Unit;
             LengthTextBox.Text = material.Length;
             CountTextBox.Text = material.Count;
-            TypeTextBox.Text = material.Type_of_material;
+            TypeComboBox.SelectedItem = material.Type_of_material;
             PurchPriceTextBox.Text = material.Purchase_price;
             GOSTTextBox.Text = material.GOST;
-            SupplierTextBox.Text = material.Main_supplier;
+            SuppComboBox.SelectedItem = material.Main_supplier;
 
             _material = material;
         }
@@ -58,20 +69,28 @@ namespace FurnitureApp.Views
             if (ModelCheck())
             {
                 _material.Quality = QualityComboBox.SelectedItem.ToString();
-                _material.Article = ArticulTextBox.Text;
+                _material.Article = ArticleTextBox.Text;
                 _material.Name = NameTextBox.Text;
                 _material.Unit = UnitTextBox.Text;
                 _material.Length = LengthTextBox.Text;
                 _material.Count = CountTextBox.Text;
-                _material.Type_of_material = TypeTextBox.Text;
+                _material.Type_of_material = TypeComboBox.SelectedItem.ToString();
                 _material.Purchase_price = PurchPriceTextBox.Text;
                 _material.GOST = GOSTTextBox.Text;
-                _material.Main_supplier = SupplierTextBox.Text;
+                _material.Main_supplier = SuppComboBox.SelectedItem.ToString();
 
                 try
                 {
-                    fornitureContext.Materials.Update(_material);
-                    fornitureContext.SaveChanges();
+                    if (ArticleTextBox.IsEnabled == false)
+                    {
+                        fornitureContext.Materials.Update(_material);
+                        fornitureContext.SaveChanges();
+                    }
+                    else
+                    {
+                        fornitureContext.Materials.Add(_material);
+                        fornitureContext.SaveChanges();
+                    }
                 }
                 catch (Exception exc)
                 {
@@ -83,20 +102,20 @@ namespace FurnitureApp.Views
 
         private bool ModelCheck()
         {
-            string error = "Неккоректные значения:";
+            string error = "Ошибки:\n";
             if (string.IsNullOrEmpty(CountTextBox.Text))
             {
-                error += " Кол-во";
+                error += "Введите Кол-во\n";
             }
-            if (string.IsNullOrEmpty(TypeTextBox.Text))
+            if ((string)SuppComboBox.SelectedItem != "Albert")
             {
-                error += " Тип";
+                error += "Выберите Альберта (таков капитализм)\n";
             }
-            if (string.IsNullOrEmpty(ArticulTextBox.Text))
+            if (string.IsNullOrEmpty(ArticleTextBox.Text))
             {
-                error += " Артикул";
+                error += "Введите артикул";
             }
-            if (error != "Неккоректные значения:")
+            if (error != "Ошибки:\n")
             {
                 MessageBox.Show(error);
                 return false;

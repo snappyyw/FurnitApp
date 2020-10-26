@@ -22,24 +22,33 @@ namespace FurnitureApp.Views
     {
         Furniture _furniture = new Furniture();
 
-        FornitureContext fornitureContext = new FornitureContext();
+        private static FornitureContext fornitureContext = new FornitureContext();
+
+        List<string> suppliers = fornitureContext.Suppliers.Select(s => s.Name).ToList();
 
         public FurnitureWindow()
         {
             InitializeComponent();
+
+            SuppComboBox.ItemsSource = suppliers;
+            SuppComboBox.SelectedIndex = 0;
         }
 
         public FurnitureWindow(Furniture furniture)
         {
             InitializeComponent();
 
+            SuppComboBox.ItemsSource = suppliers;
+            SuppComboBox.SelectedIndex = 0;
+
             ArticleTextBox.Text = furniture.Article;
+            ArticleTextBox.IsEnabled = false;
             NameTextBox.Text = furniture.Name;
             CountTextBox.Text = furniture.Count.ToString();
             UnitTextBox.Text = furniture.Unit;
             TypeTextBox.Text = furniture.type_of_accessories;
             PriceTextBox.Text = furniture.Purchase_price;
-            SupplierTextBox.Text = furniture.Main_supplier;
+            SuppComboBox.SelectedItem = furniture.Main_supplier;
 
             _furniture = furniture;
         }
@@ -54,12 +63,20 @@ namespace FurnitureApp.Views
                 _furniture.Unit = UnitTextBox.Text;
                 _furniture.type_of_accessories = TypeTextBox.Text;
                 _furniture.Purchase_price = PriceTextBox.Text;
-                _furniture.Main_supplier = SupplierTextBox.Text;
+                _furniture.Main_supplier = SuppComboBox.SelectedItem.ToString();
 
                 try
                 {
-                    fornitureContext.Furniture.Update(_furniture);
-                    fornitureContext.SaveChanges();
+                    if(ArticleTextBox.IsEnabled == false)
+                    {
+                        fornitureContext.Furniture.Update(_furniture);
+                        fornitureContext.SaveChanges();
+                    }
+                    else
+                    {
+                        fornitureContext.Furniture.Add(_furniture);
+                        fornitureContext.SaveChanges();
+                    }
                 }
                 catch (Exception exc)
                 {
@@ -71,12 +88,24 @@ namespace FurnitureApp.Views
 
         private bool ModelCheck()
         {
-            string error = "Неккоректные значения:";
+            string error = "Ошибки:\n";
+            try
+            {
+                int.Parse(CountTextBox.Text);
+            }
+            catch
+            {
+                error += "Кол-во хуйня\n";
+            }
             if (string.IsNullOrEmpty(ArticleTextBox.Text))
             {
-                error += " Артикул";
+                error += "Введите артикул\n";
             }
-            if (error != "Неккоректные значения:")
+            if ((string)SuppComboBox.SelectedItem != "Albert")
+            {
+                error += "Выберите Альберта (таков капитализм)";
+            }
+            if (error != "Ошибки:\n")
             {
                 MessageBox.Show(error);
                 return false;

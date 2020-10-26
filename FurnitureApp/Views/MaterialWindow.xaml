@@ -18,16 +18,16 @@
         <Label Content="Качество" HorizontalAlignment="Left" Margin="10,290,0,0" VerticalAlignment="Top" Width="149" Height="30" FontSize="14" FontFamily="Arial"/>
         <Label Content="Основной поставщик" HorizontalAlignment="Left" Margin="10,325,0,0" VerticalAlignment="Top" Width="149" Height="30" FontSize="14" FontFamily="Arial"/>
         <ComboBox Name="QualityComboBox" HorizontalAlignment="Left" Margin="165,290,0,0" VerticalAlignment="Top" Width="170" Height="30" FontSize="14" FontFamily="Arial"/>
-        <TextBox Name="SupplierTextBox" HorizontalAlignment="Left" Height="30" Margin="165,325,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" FontSize="14" FontFamily="Arial"/>
         <TextBox Name="GOSTTextBox" HorizontalAlignment="Left" Height="30" Margin="165,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" FontSize="14" FontFamily="Arial"/>
         <TextBox Name="PurchPriceTextBox" HorizontalAlignment="Left" Height="30" Margin="165,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" FontSize="14" FontFamily="Arial"/>
-        <TextBox Name="TypeTextBox" HorizontalAlignment="Left" Height="30" Margin="165,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" FontSize="14" FontFamily="Arial"/>
         <TextBox Name="CountTextBox" HorizontalAlignment="Left" Height="30" Margin="165,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" FontSize="14" FontFamily="Arial"/>
         <TextBox Name="LengthTextBox" HorizontalAlignment="Left" Height="30" Margin="165,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" FontSize="14" FontFamily="Arial"/>
         <TextBox Name="UnitTextBox" HorizontalAlignment="Left" Height="30" Margin="165,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" FontSize="14" FontFamily="Arial"/>
         <TextBox Name="NameTextBox" HorizontalAlignment="Left" Height="30" Margin="165,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" FontSize="14" FontFamily="Arial"/>
-        <TextBox Name="ArticulTextBox" HorizontalAlignment="Left" Height="30" Margin="165,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" FontSize="14" FontFamily="Arial"/>
+        <TextBox Name="ArticleTextBox" HorizontalAlignment="Left" Height="30" Margin="165,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" FontSize="14" FontFamily="Arial"/>
         <Button Content="Сохранить" HorizontalAlignment="Left" Margin="106,377,0,0" VerticalAlignment="Top" Width="160" Height="44" FontSize="14" FontFamily="Arial" Click="Button_Save_Click"/>
+        <ComboBox x:Name="SuppComboBox" HorizontalAlignment="Left" Margin="165,325,0,0" VerticalAlignment="Top" Width="170" Height="30" FontSize="14" FontFamily="Arial"/>
+        <ComboBox x:Name="TypeComboBox" HorizontalAlignment="Left" Margin="165,185,0,0" VerticalAlignment="Top" Width="170" Height="30" FontSize="14" FontFamily="Arial"/>
 
     </Grid>
 </Window>

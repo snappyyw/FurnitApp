@@ -25,7 +25,7 @@ namespace FurnitureApp.Views
         public RegistrationWindow()
         {
             InitializeComponent();
-            RoleComboBox.ItemsSource = new List<string> { "Заказчик","Директор","Менеджер","Заместитель директора","Мастер"};
+            RoleComboBox.ItemsSource = new List<string> {"Заказчик","Директор","Менеджер","Заместитель директора","Мастер"};
             RoleComboBox.SelectedIndex = 0;
         }
 
@@ -62,13 +62,15 @@ namespace FurnitureApp.Views
             {
                 errors += " Логин";
             }
+            //Закройте глаза
             if (!(!string.IsNullOrEmpty(PasswordBox.Password) && (PasswordBox.Password.Length >= 6 && PasswordBox.Password.Length <= 18) && 
                 (PasswordBox.Password.Contains("&") || PasswordBox.Password.Contains("*") || PasswordBox.Password.Contains("{") || 
                 PasswordBox.Password.Contains("}") || PasswordBox.Password.Contains("|") || PasswordBox.Password.Contains("+"))))
             { 
                 errors += " Пароль (должен быть длиной от 6 до 18 символов и коючать себя хотя бы один из символов: *&{}|+)";
             }
-            if(errors != "Неккоректные значения: ")
+            //Откройте глаза
+            if (errors != "Неккоректные значения: ")
             {
                 MessageBox.Show(errors);
                 return false;

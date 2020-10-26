@@ -20,8 +20,8 @@
         <TextBox Name="UnitTextBox" HorizontalAlignment="Left" Height="40" Margin="169,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" FontSize="14"/>
         <TextBox Name="TypeTextBox" HorizontalAlignment="Left" Height="40" Margin="169,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" FontSize="14"/>
         <TextBox Name="PriceTextBox" HorizontalAlignment="Left" Height="40" Margin="169,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" FontSize="14"/>
-        <TextBox Name="SupplierTextBox" HorizontalAlignment="Left" Height="40" Margin="169,280,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" FontSize="14"/>
         <Button Content="Сохранить" HorizontalAlignment="Left" Margin="110,340,0,0" VerticalAlignment="Top" Width="157" Height="50" FontSize="14" Click="Button_Save_Click"/>
+        <ComboBox x:Name="SuppComboBox" HorizontalAlignment="Left" Margin="169,280,0,0" VerticalAlignment="Top" Width="187" Height="40"/>
 
     </Grid>
 </Window>

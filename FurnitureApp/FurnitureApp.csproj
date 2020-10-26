@@ -155,7 +155,7 @@
     <Compile Include="Model\EquipmentType.cs" />
     <Compile Include="Model\Furniture.cs" />
     <Compile Include="Model\Material.cs" />
-    <Compile Include="Model\Specification.cs" />
+    <Compile Include="Model\Supplier.cs" />
     <Compile Include="Views\CustomerWindow.xaml.cs">
       <DependentUpon>CustomerWindow.xaml</DependentUpon>
     </Compile>

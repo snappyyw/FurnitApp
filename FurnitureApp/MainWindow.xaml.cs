@@ -34,50 +34,49 @@ namespace FurnitureApp
 
         private void EnterButton_Click(object sender, RoutedEventArgs e)
         {
-            bool userFined = false;
             List<User> users = fornitureContext.Users.ToList();
-            foreach (var user in users)
+            User user = fornitureContext.Users.FirstOrDefault(u => u.Login == TextBoxLogin.Text && u.Password == PasswordBox.Password);
+            if (user != null)
             {
-                if (TextBoxLogin.Text == user.Login && PasswordBox.Password == user.Password && TextBoxCapcha.Text == cumcha)
+                if(TextBoxCapcha.Text == cumcha)
                 {
                     switch (user.Role)
                     {
                         case "Заказчик":
                             CustomerWindow customerWindow = new CustomerWindow();
                             customerWindow.Show();
-                            userFined = true;
                             this.Close();
                             break;
                         case "Менеджер":
                             ManagerWindow managerWindow = new ManagerWindow();
                             managerWindow.Show();
-                            userFined = true;
                             this.Close();
                             break;
                         case "Заместитель директора":
                             DepDirectorWindow depDirectorWindow = new DepDirectorWindow();
                             depDirectorWindow.Show();
-                            userFined = true;
                             this.Close();
                             break;
                         case "Мастер":
                             MasterWindow masterWindow = new MasterWindow();
                             masterWindow.Show();
-                            userFined = true;
                             this.Close();
                             break;
                         case "Директор":
                             DirectorWindow directorWindow = new DirectorWindow();
                             directorWindow.Show();
-                            userFined = true;
                             this.Close();
                             break;
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Ты робот, пошел нахуй! :)");
+                }
             }
-            if (!userFined)
+            else
             {
-                MessageBox.Show("Нет.");
+                MessageBox.Show("Такого пользователя не существует!");
             }
         }
 
@@ -93,12 +92,11 @@ namespace FurnitureApp
             string kastil = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890";
             Random rnd = new Random();
             string cumcha = "";
-            for(int i = 0; i< 4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 int cum = rnd.Next(0, kastil.Length);
                 cumcha += kastil[cum];
             }
-
             return cumcha;
         }
 
@@ -106,6 +104,13 @@ namespace FurnitureApp
         {
             cumcha = cumchaGeneration();
             labelCapcha.Content = cumcha;
+        }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            DirectorWindow directorWindow = new DirectorWindow();
+            directorWindow.Show();
+            this.Close();
         }
     }
 }

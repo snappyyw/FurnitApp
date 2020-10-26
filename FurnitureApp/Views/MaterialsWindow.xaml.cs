@@ -28,7 +28,6 @@ namespace FurnitureApp.Views
             MaterialsDataGrid.ItemsSource = fornitureContext.Materials.ToList();
             AllCountLabel.Content = fornitureContext.Materials.Count();
             DisplayedLabel.Content = fornitureContext.Materials.Count();
-            //TotalСostLabel.Content = fornitureContext.Materials.Where(m => m.Purchase_price != null).Sum(m => double.Parse(m.Purchase_price));
             if(role != "Директор" && role != "Заместитель директора")
             {
                 AddButton.IsEnabled = false;
@@ -72,7 +71,6 @@ namespace FurnitureApp.Views
             MaterialsDataGrid.Items.Refresh();
             AllCountLabel.Content = fornitureContext.Materials.Count();
             DisplayedLabel.Content = fornitureContext.Materials.Count();
-            //TotalСostLabel.Content = fornitureContext.Materials.Sum(m => double.Parse(m.Purchase_price));
         }
 
         private void Button_Qual_Click(object sender, RoutedEventArgs e)
@@ -81,7 +79,6 @@ namespace FurnitureApp.Views
             MaterialsDataGrid.Items.Refresh();
             AllCountLabel.Content = fornitureContext.Materials.Count();
             DisplayedLabel.Content = fornitureContext.Materials.Where(m => m.Quality == "Качественный").Count();
-            //TotalСostLabel.Content = fornitureContext.Materials.Where(m => m.Quality == "Качественный").Sum(m => double.Parse(m.Purchase_price));
         }
 
         private void Button_Def_Click(object sender, RoutedEventArgs e)
@@ -90,7 +87,6 @@ namespace FurnitureApp.Views
             MaterialsDataGrid.Items.Refresh();
             AllCountLabel.Content = fornitureContext.Materials.Count();
             DisplayedLabel.Content = fornitureContext.Materials.Where(m => m.Quality == "С незначительными дефектами").Count();
-            //TotalСostLabel.Content = fornitureContext.Materials.Where(m => m.Quality == "С незначительными дефектами").Sum(m => double.Parse(m.Purchase_price));
         }
 
         private void Button_Brak_Click(object sender, RoutedEventArgs e)
@@ -99,7 +95,6 @@ namespace FurnitureApp.Views
             MaterialsDataGrid.Items.Refresh();
             AllCountLabel.Content = fornitureContext.Materials.Count();
             DisplayedLabel.Content = fornitureContext.Materials.Where(m => m.Quality == "Бракованный").Count();
-            //TotalСostLabel.Content = fornitureContext.Materials.Where(m => m.Quality == "Бракованный").Sum(m => double.Parse(m.Purchase_price));
         }
     }
 }

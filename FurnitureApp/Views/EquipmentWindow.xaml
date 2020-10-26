@@ -14,8 +14,8 @@
         <Label Content="Характеристики" HorizontalAlignment="Left" Margin="40,170,0,0" VerticalAlignment="Top" Width="285" Height="40" FontSize="16" FontFamily="Arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <ComboBox Name="TypeComboBox" HorizontalAlignment="Left" Margin="185,80,0,0" VerticalAlignment="Top" Width="140" Height="40" FontSize="16" FontFamily="Arial"/>
         <DatePicker Name="DatePurchDataPicker" HorizontalAlignment="Left" Margin="185,125,0,0" VerticalAlignment="Top" Height="39" Width="140" FontSize="16" FontFamily="Arial"/>
-        <DataGrid Name="SpecificationsDataGrid" HorizontalAlignment="Left" Height="155" Margin="40,210,0,0" VerticalAlignment="Top" Width="285"/>
         <Button Content="Сохранить" HorizontalAlignment="Left" Margin="110,384,0,0" VerticalAlignment="Top" Width="150" Height="46" FontSize="16" FontFamily="Arial" Click="Button_Save_Click"/>
+        <TextBox x:Name="SpecTextBox" HorizontalAlignment="Left" Height="145" Margin="40,215,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="285" FontSize="16" FontFamily="Arial"/>
 
     </Grid>
 </Window>
